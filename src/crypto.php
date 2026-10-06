@@ -16,7 +16,7 @@ function verify_password(string $password, string $stored): bool
 function reset_token_for(string $email, ?string $day = null): string
 {
     $day = $day ?? gmdate("Y-m-d");
-    return sha1(strtolower($email) . "|" . $day);
+    return bin2hex(random_bytes(32));
 }
 
 function issue_reset_token(string $email): string
